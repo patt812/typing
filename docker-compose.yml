@@ -1,0 +1,55 @@
+version: "3.9"
+volumes:
+  psysh-store:
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./infra/docker/php/Dockerfile
+      target: ${APP_BUILD_TARGET:-development}
+    volumes:
+      - type: bind
+        source: ./src
+        target: /data
+      - type: volume
+        source: psysh-store
+        target: /root/.config/psysh
+        volume:
+          nocopy: true
+    environment:
+      - LOG_CHANNEL=${LOG_CHANNEL:-stderr}
+      - LOG_STDERR_FORMATTER=${LOG_STDERR_FORMATTER:-Monolog\Formatter\JsonFormatter}
+      - DB_CONNECTION=${DB_CONNECTION:-mysql}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_USERNAME=${DB_USERNAME:-phper}
+      - DB_PASSWORD=${DB_PASSWORD:-secret}
+      - DB_DATABASE=${DB_DATABASE:-typing}
+    networks:
+      - webdev
+
+  web:
+    build:
+      context: .
+      dockerfile: ./infra/docker/nginx/Dockerfile
+    ports:
+      - target: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        protocol: tcp
+        mode: host
+    environment:
+      VIRTUAL_HOST: 'typing.sample'
+      SELF_SIGNED_HOST: 'typing.sample'
+    volumes:
+      - type: bind
+        source: ./src
+        target: /data
+    networks:
+      - webdev
+
+networks:
+  webdev:
+    external: true
+    name: webdev
