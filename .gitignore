@@ -1,0 +1,4 @@
+.vscode/
+__meta__/*
+.VSCodeCounter/*
+package-lock.json

@@ -8,7 +8,7 @@ services:
       dockerfile: ./infra/docker/php/Dockerfile
       target: ${APP_BUILD_TARGET:-development}
     volumes:
-      - type: bind
+      - type: bindF
         source: ./src
         target: /data
       - type: volume

@@ -16,14 +16,14 @@ COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
-    locales \
-    git \
-    unzip \
-    libzip-dev \
-    libicu-dev \
-    libonig-dev \
-    libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
-    ffmpeg \
+  locales \
+  git \
+  unzip \
+  libzip-dev \
+  libicu-dev \
+  libonig-dev \
+  libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+  ffmpeg \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8 \
@@ -31,16 +31,20 @@ RUN apt-get update \
   && docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-install -j$(nproc) gd exif \
   && docker-php-ext-install \
-    intl \
-    pdo_mysql \
-    zip \
-    bcmath \
+  intl \
+  pdo_mysql \
+  zip \
+  bcmath \
   && composer config -g process-timeout 3600 \
-  && composer config -g repos.packagist composer https://packagist.org
+  && composer config -g repos.packagist composer https://packagist.org \
+  # xdebug install
+  && pecl install xdebug \
+  && docker-php-ext-enable xdebug
 
 FROM base AS development
 
 COPY ./infra/docker/php/php.development.ini /usr/local/etc/php/php.ini
+COPY ./infra/docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 FROM base AS deploy
 

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "strict": true,
+    "jsx": "preserve",
+    // "allowJs": true,
+    // "esModuleInterop": true,
+    // "allowSyntheticDefaultImports": true,
+    // "sourceMap": true,
+    // "baseUrl": ".",
+    "outDir": "dist"
+    // "paths": {
+    //   "@/*": ["./src/*"]
+    // },
+    // "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "public"
+  ],
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
+  }
+}
