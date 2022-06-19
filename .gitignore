@@ -2,3 +2,5 @@
 __meta__/*
 .VSCodeCounter/*
 package-lock.json
+.devcontainer/*
+.env
