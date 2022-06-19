@@ -6,9 +6,9 @@ services:
     build:
       context: .
       dockerfile: ./infra/docker/php/Dockerfile
-      target: ${APP_BUILD_TARGET:-development}
+      target: ${APP_BUILD_TARGET}
     volumes:
-      - type: bindF
+      - type: bind
         source: ./src
         target: /data
       - type: volume
@@ -17,14 +17,14 @@ services:
         volume:
           nocopy: true
     environment:
-      - LOG_CHANNEL=${LOG_CHANNEL:-stderr}
-      - LOG_STDERR_FORMATTER=${LOG_STDERR_FORMATTER:-Monolog\Formatter\JsonFormatter}
-      - DB_CONNECTION=${DB_CONNECTION:-mysql}
-      - DB_HOST=${DB_HOST:-db}
-      - DB_PORT=${DB_PORT:-3306}
-      - DB_USERNAME=${DB_USERNAME:-phper}
-      - DB_PASSWORD=${DB_PASSWORD:-secret}
-      - DB_DATABASE=${DB_DATABASE:-typing}
+      - LOG_CHANNEL=${LOG_CHANNEL}
+      - LOG_STDERR_FORMATTER=${LOG_STDERR_FORMATTER}
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
     networks:
       - webdev
 
@@ -40,8 +40,8 @@ services:
         protocol: tcp
         mode: host
     environment:
-      VIRTUAL_HOST: 'typing.sample'
-      SELF_SIGNED_HOST: 'typing.sample'
+      VIRTUAL_HOST: '${VIRTUAL_HOST}'
+      SELF_SIGNED_HOST: '${SELF_SIGNED_HOST}'
     volumes:
       - type: bind
         source: ./src
