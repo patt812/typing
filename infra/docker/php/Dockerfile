@@ -42,7 +42,7 @@ RUN apt-get update \
   && docker-php-ext-enable xdebug
 
 FROM base AS development
-
+COPY ./src /data
 COPY ./infra/docker/php/php.development.ini /usr/local/etc/php/php.ini
 COPY ./infra/docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 

@@ -17,3 +17,6 @@ storage/*.key
 .phpunit.result.cache
 
 /vendor
+/xdebug*
+
+package.xml

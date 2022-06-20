@@ -19,10 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//  laravel % php artisan serve
 Route::get('/', [HomeController::class, 'create']);
 // Route::get('/game', [GameController::class, 'create']);
-Route::get('/sentence', [SentenceController::class, 'create']);
+// Route::get('/sentence', [SentenceController::class, 'create']);
 // Route::get('/patterns', [PatternsController::class, 'create']);
 
 
