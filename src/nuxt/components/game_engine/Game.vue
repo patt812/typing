@@ -43,6 +43,7 @@ export default {
     });
   },
   destroyed() {
+
     document.removeEventListener("keydown", {
       handleEvent: this.game.start,
       game: this.game,
@@ -56,7 +57,7 @@ export default {
       const formData = new FormData();
       formData.append("sentence_num", sentenceNum)
       this.$axios
-        .post("http://127.0.0.1:8000/api/sentence",
+        .post("https://typing.sample/api/sentence",
           formData)
         .then((response) => {
           this.game.prepare(response.data);
