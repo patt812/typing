@@ -10,18 +10,14 @@
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   @yield('css')
 
-  <script src="{{ mix('js/app.js') }}" defer></script>
+
   @yield('js')
 </head>
 
 <body>
   <div id="app">
-    {{-- <div id="nav">
-      <router-link to="/game">Home</router-link>
-    </div> --}}
     <header>
       Typing
-      {{-- ↑それっぽいフォントを使ってみよう --}}
     </header>
     <section class="container">
       <sidemenu></sidemenu>
