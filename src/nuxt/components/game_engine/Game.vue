@@ -5,22 +5,23 @@
       {{ game.dialog ? game.dialog : "スペースキーを押してスタート" }}
     </p>
 
-    <p v-show="game.isStarted"></p>
-    <p v-show="game.isStarted">
-      {{ game.sentence.sentences[game.sentence.current] }}
-    </p>
-    <p v-show="game.isStarted">
-      {{ game.sentence.kanasDisplay[game.sentence.current] }}
-    </p>
     <div v-show="game.isStarted">
-      <span style="color: yellowgreen">{{
-          game.sentence.displayRoma.substr(0, game.statistics.correct)
-      }}</span><span>{{ game.sentence.displayRoma.substr(game.statistics.correct) }}
-      </span>
+      <p>
+        {{ game.sentence.sentences[game.sentence.current] }}
+      </p>
+      <p>
+        {{ game.sentence.kanasDisplay[game.sentence.current] }}
+      </p>
+      <div>
+        <span style="color: yellowgreen">{{
+            game.sentence.displayRoma.substr(0, game.statistics.correct)
+        }}</span><span>{{ game.sentence.displayRoma.substr(game.statistics.correct) }}
+        </span>
+      </div>
+      <p>{{ game.statistics }}</p>
+      <p>{{ game.statistics.time }}</p>
+      <p>{{ game.countDown }}</p>
     </div>
-    <p>{{ game.statistics }}</p>
-    <p>{{ game.statistics.time }}</p>
-    <p>{{ game.countDown }}</p>
   </section>
 </template>
 
