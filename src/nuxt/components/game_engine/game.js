@@ -18,6 +18,11 @@ export default class Game {
   */
   constructor(countdown = 0) {
     /**
+     * メッセージの初期値を格納します。
+     * @type {boolean}
+     */
+    this.DEFAULT_GAME_DIALOG = "スペースキーを押してスタート";
+    /**
      * ゲームがプレイ可能な状態かを記録します。
      * @type {boolean}
      */

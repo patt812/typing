@@ -2,7 +2,7 @@
 <template>
   <section>
     <p v-show="!game.isStarted">
-      {{ game.dialog ? game.dialog : "スペースキーを押してスタート" }}
+      {{ game.dialog ? game.dialog : game.DEFAULT_GAME_DIALOG }}
     </p>
 
     <div v-show="game.isStarted">
@@ -55,12 +55,14 @@ export default {
       this.game.start();
     },
     getSentence(sentenceNum) {
+      this.game.dialog = "DB接続中...";
       const formData = new FormData();
       formData.append("sentence_num", sentenceNum)
       this.$axios
         .post("https://typing.sample/api/sentence",
           formData)
         .then((response) => {
+          this.game.dialog = this.game.DEFAULT_GAME_DIALOG;
           this.game.prepare(response.data);
         })
         .catch((error) => {
