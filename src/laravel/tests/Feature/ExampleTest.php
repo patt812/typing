@@ -16,6 +16,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/api/sentence');
         $response->assertStatus(200);
+        echo $response[0]["sentence"];
         // $this->assertEquals($response[0]->id, 1);
     }
 }

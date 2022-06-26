@@ -17,7 +17,7 @@ COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
   locales \
-  git \
+  git nodejs npm \
   unzip \
   libzip-dev \
   libicu-dev \
